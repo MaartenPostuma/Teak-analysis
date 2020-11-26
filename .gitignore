@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.idea/*
+data
+output
+figures
+Teak-analysis.Rproj
+.Rprofile
