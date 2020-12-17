@@ -9,3 +9,7 @@ dataPop<-data.frame(sample=data$Sample,pop=sub("_.*$","",data$Sample))
 write.table(dataPop,"c:/Users/postu003/Dropbox/Wageningen/TEAK/popmap_teak.tsv",
             quote=F,row.names = F,col.names = F,sep="\t")
 
+ggplot(bismVsTruth,aes(x=fracBism,y=fracTrue))+geom_point(alpha=0.05)+xlab("Fraction methylation Bismark")+ylab("Fraction methylation truth")+facet_grid(.~context)+ggtitle("Bismark vs Truth pooled")+
+  stat_poly_eq(formula = my.formula, 
+               aes(label = paste(..rr.label..,sep="~",parse=T)),col="blue", 
+               parse = TRUE)

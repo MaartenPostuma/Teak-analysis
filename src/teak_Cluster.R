@@ -9,11 +9,10 @@ countPopPerMetaPop<-function(x){
   return(length(unique(x)))
 }
 
-setwd("C:/Users/postu003/Dropbox/Wageningen/TEAK")
 
 vcf.fn<-"final.vcf.recode.vcf"
 image<-"images/mds.png"
-popmap<-read.csv("Teak_sample_info.csv",h=T)
+popmap<-read.csv("Teak-analysis/data/Teak_sample_info.csv",h=T)
 popmap$metaPop<-popmap$metapop
 popPerMeta<-aggregate(pop~metaPop,popmap,countPopPerMetaPop)
 cols<-rainbow(length(popPerMeta$metaPop))
