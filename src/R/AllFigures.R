@@ -34,11 +34,11 @@ dend_data2<-merge(dend_data$labels,sampleInfo,by.x="label",by.y="sample",sort = 
 
 
 dend_data2
-cluster<-ggplot(dend_data$segments)+
+ggplot(dend_data$segments)+
   geom_text(data = dend_data2, aes(y-7.5, x,col=metapop,label=sampleCorrect),size =5)+
   geom_segment(aes(x = y, y = x, xend = yend, yend = xend))+theme_dendro()+xlab("Genetic distance")+
-  scale_colour_discrete("")#+
-  #ggsave("output/Figures/Tree.png",height=8,width=14)
+  scale_colour_discrete("")+
+  ggsave("output/Figures/Tree.pdf",height=8,width=14)
 
 ggplot(dend_data$segments)+
   geom_text(data = dend_data2, aes(y-7.5, x,col=metapop,label=COUNTRY.of.ORIGIN),size =5)+
@@ -58,7 +58,7 @@ FisMerge$grp[FisMerge$x>25]<-"2"
 
 ggplot(FisMerge,aes(y=F,x=grp,fill=grp))+geom_boxplot()+
   scale_fill_brewer("",palette="Set3")+
-  ggsave("output/Figures/simpleFisPlot.png")
+  ggsave("output/Figures/simpleFisPlot.pdf")
 
 
 
@@ -97,7 +97,7 @@ ggplot(test,aes(x=V1,y=value,fill=variable,width=1))+
   xlab("")+
   facet_grid(.~KFact,scales="free",space="free",switch="y")+
   ggtitle("A")+scale_fill_brewer("",palette = "Set3" )+
-  ggsave("output/Figures/structureOutput.png")
+  ggsave("output/Figures/structureOutput.pdf")
   
 
 Palettes
