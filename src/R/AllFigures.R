@@ -57,8 +57,8 @@ FisMerge$grp[FisMerge$x>25]<-"2"
 
 
 ggplot(FisMerge,aes(y=F,x=grp,fill=grp))+geom_boxplot()+
-  scale_fill_brewer("",palette="Set3")+
-  ggsave("output/Figures/simpleFisPlot.pdf")
+  scale_fill_brewer("",palette="Set3")+xlab("")+ylab("Fis")+theme_minimal()+theme(legend.position = "none",axis.text.x = element_blank())+
+  ggsave("output/Figures/simpleFisPlot.png")
 
 
 
@@ -70,7 +70,7 @@ sampleInfo$ind<-c(3,1,2,4:length(sampleInfo$sample))
 strucPlot<-data.frame()
 
 for(i in 2:4){
-  dataStructure<-read.table(paste("output/K=",i,"/MajorCluster/CLUMPP.files/ClumppIndFile.output",sep=""))
+  dataStructure<-read.table(paste("output/structure1/K=",i,"/MajorCluster/CLUMPP.files/ClumppIndFile.output",sep=""))
   dataStructure$K<-as.character(i)
   dataStructure$ind<-as.character(dataStructure$V1)
   structurePlot2<-merge(sampleInfo,dataStructure,by="ind")

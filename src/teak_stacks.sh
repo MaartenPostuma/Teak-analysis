@@ -63,7 +63,21 @@ data$ID<-as.numeric(data$ID)
 
 write.table(data,"data/structureInFinal",quote=F,row.names=F,sep="\t")
 write.table(data[,c(1,2)],"popCoding")
+q()
 
+
+
+snakemake -j {number of threads}
+
+Make output compatible with structure selector 
+cd resultsfile.
+for dir in *; do  for file in $dir/* ; do   mv $file ${file}_${dir}_f; done; done
+zip -r Results*
+cat ../../structureIn | cut -f1,2 | tail -n +3 | uniq > popmapStructure
+
+go to https://lmme.ac.cn/StructureSelector/
+upload zip file + popfile
+Check ordering of pops etc.
 
 
 
