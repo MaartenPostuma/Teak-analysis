@@ -1,0 +1,7 @@
+Kmax  : 7
+Kmin  : 1
+replicates : 10
+input  : /scratch2/maarten/TEAK/data/structureInFinal
+nInds  : 37
+nLoci  : 1000
+outFile  : /scratch2/maarten/TEAK/output/structure/

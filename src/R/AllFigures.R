@@ -37,8 +37,8 @@ dend_data2
 ggplot(dend_data$segments)+
   geom_text(data = dend_data2, aes(y-7.5, x,col=metapop,label=sampleCorrect),size =5)+
   geom_segment(aes(x = y, y = x, xend = yend, yend = xend))+theme_dendro()+xlab("Genetic distance")+
-  scale_colour_discrete("")+
-  ggsave("output/Figures/Tree.pdf",height=8,width=14)
+  scale_colour_discrete("")#+
+  #ggsave("output/Figures/Tree.pdf",height=8,width=14)
 
 ggplot(dend_data$segments)+
   geom_text(data = dend_data2, aes(y-7.5, x,col=metapop,label=COUNTRY.of.ORIGIN),size =5)+
@@ -49,6 +49,7 @@ ggplot(dend_data$segments)+
 
 basic.stats(genlight)
 
+write.table(FisMerge[,c("INDV","grp")],"popmap2Clusts.tsv",quote=F,col.names = F,row.names = F,sep="\t")
 
 FisMerge<-merge(Fis,dend_data2,by.x="INDV",by.y="label")
 
@@ -100,4 +101,56 @@ ggplot(test,aes(x=V1,y=value,fill=variable,width=1))+
   ggsave("output/Figures/structureOutput.pdf")
   
 
-Palettes
+################ Supplement figure 1
+
+
+
+rm(list=ls())
+library(vcfR)
+library(adegenet)
+library(ggplot2)
+library(ggrepel)
+countPopPerMetaPop<-function(x){
+  return(length(unique(x)))
+}
+
+colorBlindBlack8  <- c("#000000", "#E69F00", "#56B4E9", "#009E73", 
+                       "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+vcf.fn<-"data/final.vcf"
+popmap<-read.csv("data/Teak_sample_info.csv",h=T)
+colnames(popmap)[c(2,1)]<-c("x","ID")
+
+popmap$metaPop<-popmap$metapop
+
+
+
+vcf<-read.vcfR(vcf.fn)
+genlight<-vcfR2genlight(vcf)
+
+
+pca<-glPca(genlight,nf = 10)
+str(pca)
+
+
+PCAAxis<-round(pca$eig/sum(pca$eig)*100,digits = 1)
+
+pcaPlot <- data.frame(pca$scores,sample=row.names(pca$scores),pop=sub("_.*$","",row.names(pca$scores)),ID=row.names(pca$scores))
+head(popmap)
+popmap$ID
+pcaPlot$ID
+plotFinal<-merge(pcaPlot,popmap,by.x="ID",by.y="sample")
+plotFinal$cluster<-"#000000"
+plotFinal$cluster[plotFinal$PC1>0]<-"#E69F00"
+plotFinal<-plotFinal[order(plotFinal$sampleNo),]
+plotFinal$suppName<-paste(plotFinal$sampleNo,plotFinal$sampleCorrect)
+ggplot(plotFinal,aes(x=PC1,y=PC2,col=as.factor(sampleNo),label=sampleNo))+theme_light()+
+  xlab("PCA 1")+ylab("PCA 2")+geom_point()+geom_text_repel(max.overlaps = 40)+
+  scale_colour_manual("",values=plotFinal$cluster,labels=plotFinal$suppName)+
+  guides(colour=guide_legend(override.aes=list(size=2)))+
+  xlab(paste0("PCA 1 (",PCAAxis[1],"%)"))+
+  ylab(paste0("PCA 2 (",PCAAxis[2],"%)"))
+  ggsave("output/Figures/supplement1.pdf")
+  ggsave("output/Figures/supplement1.png")
+
+
+

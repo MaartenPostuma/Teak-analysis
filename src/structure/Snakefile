@@ -1,0 +1,53 @@
+configfile  :   "config.yaml"
+
+Kmax=config["Kmax"]
+Kmin=config["Kmin"]
+Krange=list(range(Kmin,Kmax+1))
+replicates=config["replicates"]
+replicatesRange=list(range(1,replicates+1))
+replicatesRange2=list(range(1,replicates+1))
+
+rule all:
+    input:
+         outFolders=expand("{outDir}/Results{replicatesRange}/test_run_{kRange}_f",replicatesRange=replicatesRange,kRange=Krange,outDir=config["outFile"])
+
+
+
+
+rule makeFileInStructure:
+    input:
+        mainparams="mainparams"
+    output:
+        inputFolders=temp(expand("mainParam/mainparams{{replicatesRange}}-{{Krange}}"))
+    params:
+        Kmax=Kmax,
+        Kmin=Kmin,
+        replicates=replicates,
+        inFile=config["input"],
+        nInds=config["nInds"],
+        nLoci=config["nLoci"],
+        outFile=config["outFile"]
+    shell:
+         '''
+         for j in {{1..{params.replicates}}}
+         do
+         for i in {{{params.Kmin}..{params.Kmax}}}
+         do
+         cat mainparams | sed "s|OUTFILE|OUTFILE {params.outFile}Results$j/test_run_$i|" | sed "s/MAXPOPS/MAXPOPS $i /" |
+         sed "s|INFILE|INFILE {params.inFile}|" | sed "s/NUMINDS/NUMINDS {params.nInds}/" | 
+         sed "s/NUMLOCI/NUMLOCI {params.nLoci}/" > mainParam/mainparams$j-$i
+         done
+         done
+         '''
+
+rule runStructure:
+    input:
+        inputFolders=expand("mainParam/mainparams{{replicatesRange}}-{{Krange}}")
+    output:
+         outFolders=expand("{dir}/Results{{replicatesRange}}/test_run_{{Krange}}_f",dir=config["outFile"])
+    params:
+         kRange="{Krange}",
+         repl="{replicatesRange}",
+    shell:
+         'structure -m mainParam/mainparams{params.repl}-{params.kRange}'
+

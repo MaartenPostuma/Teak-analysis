@@ -1,0 +1,25 @@
+#input file used for filtering
+input_file              :   /scratch2/maarten/knikkend/Stacks/stacksRun5/populations.snps.vcf
+#Percentage of missing SNPs per individual allowed. Individuals exceeding this will be filtered
+individual_missingness  :   0.8
+
+##Parameter ranges
+#Percentage of individuals a loci should be present in
+max_missing_range       :   [0.6,0.7,0.8,0.9,0.95,1] 
+#Minimal minor allele frequency
+maf_range               :   [0,0.01,0.025,0.05,0.1]
+#Hardy weinberg p-value. SNPs that are more significantly out of equilibrium then parameter are filtered
+hwe_range               :   [0,0.0005,0.005,0.05,0.1]
+#Minimal depth for a SNP to be included (Does not seem to work correctly yet)
+DP_range                :   [2,4,6,8,10]
+
+#Set of values to use in the second part. These values remain set while for each one the range specified above is used
+max_missing_val         :   0.8
+maf_val                 :   0.025
+hwe_val                 :   0.005
+DP_val                  :   0
+#File that contains population names and assigns them to metapopulations. 
+#Should consist of two columns with headers pop and metaPop separated by tabs
+#if there is no metapopulation structure have two columns with the same name 
+#Use full path otherwise it breaks...
+dataPop                 :   /scratch2/maarten/knikkend/filterTest/dataPopTest
