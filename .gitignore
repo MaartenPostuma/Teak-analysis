@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 .idea/*
-data
+dataAll
 output
 figures
 Teak-analysis.Rproj

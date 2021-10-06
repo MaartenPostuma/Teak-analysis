@@ -1,15 +1,16 @@
-wget https:://wherever/the/reads/are/stored
+#Download demultiplexed and PCR duplicate filtered reads from https://www.ncbi.nlm.nih.gov/bioproject/756980
 
 conda env create -f src/env/teak.yaml
 
-#Run clone filter
+
+#Run clone filter #Can be skipped
 clone_filter -1 rawReads/Run_4_various_FKDL202561777-1a_H7MCMCCX2_L2_1.fq.gz \ 
 -2 rawReads/Run_4_various_FKDL202561777-1a_H7MCMCCX2_L2_2.fq.gz -P \
 -o output/demulti/ \
 --oligo_len_1 3 --oligo_len_2 3 \
 --inline_inline -i gzfastq
 
-#Run demultiplexing using barcode file in the data file
+#Run demultiplexing using barcode file in the data file #Can be skipped
 process_radtags -1 output_demulti/Run_4_various_FKDL202561777-1a_H7MCMCCX2_L2_1.1.fq.gz -o output/demulti/ \ 
 -2 output/demulti/Run_4_various_FKDL202561777-1a_H7MCMCCX2_L2_2.2.fq.gz \
 -b data/barcodes_teak_final.tsv \
@@ -52,10 +53,12 @@ vcftools --vcf output/final.vcf --het --out output/Fis
 #head -n 1000 |
 #sort -n > data/whitelist.tsv
 
-vcftools --vcf output/final.vcf --out data/1000 --recode --positions data/whitelist.tsv
+vcftools --vcf output/final.vcf --out data/1000 --recode --positions data/whitelist.tsv #Get 1000 sites
+#export into structure format
+populations -V output/1000.recode.vcf --popmap data/popmap_teak_nodupes.tsv --structure  --write-single-snp -W data/whitelist.tsv --out-path output/ 
 
-populations -V output/1000.recode.vcf --popmap data/popmap_teak_nodupes.tsv --structure  --write-single-snp -W data/whitelist.tsv --out-path output/
 
+#Do some things in R to make sure it actually works for structure
 R
 data<-read.table("data/1000.recode.p.structure",h=T)
 data$pop<-as.numeric(data$pop)
@@ -65,7 +68,9 @@ write.table(data,"data/structureInFinal",quote=F,row.names=F,sep="\t")
 write.table(data[,c(1,2)],"popCoding")
 q()
 
-
+#
+cd src/structure
+#Changes config.yaml to match the input locations
 
 snakemake -j {number of threads}
 
@@ -79,6 +84,10 @@ go to https://lmme.ac.cn/StructureSelector/
 upload zip file + popfile
 Check ordering of pops etc.
 
+
+#####Run populations to generate population summary for the 2 popmap clusters
+
+populations -V output/final.vcf --popmap data/popmap2Clust.tsv 
 
 
 

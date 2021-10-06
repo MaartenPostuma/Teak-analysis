@@ -1,0 +1,38 @@
+﻿"PROVENANCES FOR THESIS, GENETIC ANALYSES",ID,REGION of ORIGIN,COUNTRY of ORIGIN,pop,metapop,sample,sampleCorrect,sampleNo
+BOUAKE,AD,Africa,Côte d'Ivoire,64,Africa,64_AD,Bouake (64),3
+ ASUBIMA 1  ,AI,Pacific,Solomon Islands,ASUBIMA,South East Asia,ASUBIMA_10-R,Brazil 700,1
+ ASUBIMA 10,R,Pacific,Solomon Islands,ASUBIMA,South East Asia,ASUBIMA_1-AI,Brazil 701,2
+BAMARO,W,Africa,Côte d'Ivoire,BAMARO,Africa,BAMARO_W,Bamoro ,4
+BANGRI PATI 1,L,Asia,Indonesia,BANGRIPATI1,South East Asia,BANGRIPATI1_L,Bangsri Pati ,5
+BRASIL,test1,South America,Brazil,BRASIL,South America,BRASIL_test1,Brazil,7
+CATIE,S,South America,Costa Rica,CATIE,Central America,CATIE_278-S,Catie,8
+DUNKWA,X,Africa,Tanzania,DUNKWA,Africa,DUNKWA_X,Dunkwa,9
+FLORESTECA,AG,South America,Brazil,FLORESTECA,South America,FLORESTECA_AG,Floresteca,10
+GOASO,T,Africa,Tanzania,GOASO,Africa,GOASO_T,Goaso,11
+HONDURAS,Y,South America,Honduras,HONDURAS,Central America,HONDURAS_Y,Honduras,12
+JIMIRA,H,Africa,Ghana,JIMIRA,Africa,JIMIRA_H,Jimira,14
+KIHUWI,I,Africa,Tanzania,KIHUWI,Africa,KIHUWI_I,Kihuhwi,15
+KIHUWI P68,AA,Africa,Tanzania,KIHUWI,Africa,KIHUWI_P68-AA,Kihuhwi P68,16
+KIROCA (Kiroka),A,Africa,Tanzania,KIROCA,Africa,KIROCA_A,Kiroka,17
+KVTC,J,Africa,Tanzania,KVTC,Africa,KVTC_J,KVTC,18
+LATENE,U,Africa,Côte d'Ivoire,LATENE,Africa,LATENE_U,La Tene,19
+LONGUZA ,K,Africa,Tanzania,LONGUZA,Africa,LONGUZA_K,Longuza,20
+LUASONG,AF,Asia,Malaysia,LUASONG,South East Asia,LUASONG_AF,Luasong,21
+MIRO 1,Z,South America,Costa Rica,MIRO,Central America,MIRO_1-Z,Miro 1,22
+MIRO 2,AH,South America,Costa Rica,MIRO,Central America,MIRO_2-AH,Miro 2,23
+MIRO 3,E,South America,Costa Rica,MIRO,Central America,MIRO_3-E,Miro 3,24
+MTIBWA,D,Africa,Tanzania,MTIBWA,Africa,MTIBWA_D,Mtibwa,25
+MTIBWA P61,O,Africa,Tanzania,MTIBWA,Africa,MTIBWA_P61-O,Mtibwa p61,26
+NIGERIA P67,AE,Africa,Tanzania,NIGERIA,Africa,NIGERIA_P67-AE,Nigeria p67,27
+NILAMBUR 11         ,B,Asia,India,NILAMBUR,India,NILAMBUR_11B,Nilambur,28
+NORTH INDIA,AC,Asia,India,NORTHINDIA,India,NORTHINDIA_AC,North India,29
+OUME ,N,Africa,Côte d'Ivoire,OUME,Africa,OUME_N,Oume,30
+PAMPAWIE,C,Africa,Ghana,PAMPAWIE,Africa,PAMPAWIE_C,Pampawie,31
+PERLIS,P,Asia,Malaysia,PERLIS,South East Asia,PERLIS_P,Perlis,32
+SANGOUE,F,Africa,Côte d'Ivoire,SANGOUE,Africa,SANGOUE_F,Sangoue,33
+T1,AJ,Africa,Unknown,T1,Unknown,T1_AJ,T1,34
+T4,AK,Africa,Unknown,T4,Unknown,T4_AK,T4,35
+TALIWAS,V,Asia,Malaysia,TALIWAS,South East Asia,TALIWAS_V,Taliwas,36
+TEMANDSAN 1 (Temandsang),G,Asia,Indonesia,TEMANDSAN1,South East Asia,TEMANDSAN1_G,Temandsang,38
+TOPSLIP,M,Africa,India,TOPSLIP,India,TOPSLIP_M,Topslip,40
+WORAWORA,Q,Africa,Ghana,WORAWORA,Africa,WORAWORA_Q,Worawora,41
